@@ -1,0 +1,71 @@
+﻿@model IEnumerable<Hospital.Web.Areas.Admin.Dtos.RoomDto>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="row">
+    <div class="col-md-8 mx-auto">
+
+
+        <p>
+            <a class="btn btn-primary" asp-area="Admin" asp-controller="Room" asp-action="Create">Create New</a>
+        </p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Type
+                    </th>
+                    <th>
+                        City
+                    </th>
+                    <th>
+                        PinCode
+                    </th>
+                    <th>
+                        Country
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+
+                        <td>
+                            @item.RoomNumber
+                        </td>
+                        <td>
+                            @item.Type
+                        </td>
+                        <td>
+                            @item.Status
+                        </td>
+                        <td>
+                            @item.HospitalName
+                        </td>
+                        <td>
+                            <a class="btn btn-primary" asp-area="Admin" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                            <a class="btn btn-info" asp-area="Admin" asp-action="Detail" asp-route-id="@item.Id">Details</a>
+                            <a class="btn btn-danger" asp-area="Admin" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        @if (ViewBag.totalPages > 0)
+        {
+            <div class="d-flex w-100 justify-content-center">
+                <Pagination page-count="ViewBag.totalPages" page-target="/Admin/Room" page-number="ViewBag.pagenumber" page-range="ViewBag.pagesize"></Pagination>
+
+            </div>
+        }
+    </div>
+</div>

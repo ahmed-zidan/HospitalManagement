@@ -1,0 +1,50 @@
+﻿@model Hospital.Web.Areas.Admin.Dtos.RoomDto
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="row">
+    <div class="col-md-4 mx-auto">
+
+        <h3 class="alert alert-info text-center justify-content-center d-flex">Room</h3>
+        <hr />
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="RoomNumber" class="control-label"></label>
+                <input asp-for="RoomNumber" class="form-control" />
+                <span asp-validation-for="RoomNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Type" class="control-label"></label>
+                <input asp-for="Type" class="form-control" />
+                <span asp-validation-for="Type" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Status" class="control-label"></label>
+                <input asp-for="Status" class="form-control" />
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-2">
+                <select asp-items="ViewBag.hospitals" class="form-select" asp-for="HospitalId">
+                </select>
+                <span asp-validation-for="HospitalId" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-2 d-flex">
+                <div>
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+                <div style="flex:1 1 auto"></div>
+                <div>
+                    <a class="btn btn-dark" asp-action="Index">Back to List</a>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
